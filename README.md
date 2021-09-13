@@ -25,8 +25,11 @@ Styling is also subject to change.
 
 ## Screenshots
 
+General barebone UI snapshot: 
 <img width="1556" alt="Screen Shot 2021-09-12 at 8 04 07 PM" src="https://user-images.githubusercontent.com/17859699/133007118-8fea6f22-0cf3-4d30-a0e9-f381ab506743.png">
 
+Generates an ipfs CID hash for any image uploaded: 
 <img width="1595" alt="Screen Shot 2021-09-12 at 8 04 40 PM" src="https://user-images.githubusercontent.com/17859699/133007135-082c2a42-bbf5-4599-9426-9d11ec2b2467.png">
 
+Has capability of connecting with Metamask (potentially for logins)
 <img width="1589" alt="Screen Shot 2021-09-12 at 8 05 07 PM" src="https://user-images.githubusercontent.com/17859699/133007146-b0c1c46c-e8bb-4ce0-b8eb-48f9ae9ee4d3.png">
