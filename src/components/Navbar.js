@@ -42,15 +42,17 @@ function Navbar() {
         const { ethereum } = window;
         if (!ethereum) {
             alert("Get metamask!")
+        } else if(ethereum.networkVersion !== '1'){
+            alert("Please Connect to Mainnet!");
         }
-
+        else{
         ethereum.request({ method: 'eth_requestAccounts' })
             .then(accounts => {
                 console.log("Connected", accounts[0])
                 setCurrentAccount(accounts[0])
             })
             .catch(err => console.log(err));
-
+        }
     }
 
     const disconnectWallet = () => {
