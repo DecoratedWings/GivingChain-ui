@@ -1,5 +1,6 @@
 import React from 'react'
 import IpfsUpload from '../ipfs-upload';
+import DonorUpload from '../Donor-Upload';
 
 const Donor = () => {
     return (
@@ -10,7 +11,7 @@ const Donor = () => {
                 alignItems: 'center',
                 height: '20vh'
             }}>
-                <h1>Donor</h1>
+                {/* <h1>Donor</h1> */}
             </div>
             <>
                 <div style={{
@@ -19,7 +20,9 @@ const Donor = () => {
                     alignItems: 'center',
                     height: '30vh'
                 }}>
-                    <IpfsUpload />
+                    {/* <IpfsUpload /> */}
+                    <DonorUpload />
+                   
                 </div>
             </>
         </>

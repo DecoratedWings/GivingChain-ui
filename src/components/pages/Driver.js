@@ -1,5 +1,6 @@
 import React from 'react'
 import IpfsUpload from '../ipfs-upload';
+import Practice2 from '../Practice2';
 
 const Driver = () => {
     return (
@@ -10,17 +11,11 @@ const Driver = () => {
             alignItems: 'center',
             height: '20vh'
         }}>
-            <h1>Driver</h1>
+            <h1>On Chain Transport Updates</h1>
         </div>
         <>
-            <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '30vh'
-            }}>
-                <IpfsUpload />
-            </div>
+                <Practice2 />
+                {/* <IpfsUpload /> */}
         </>
     </>
     );

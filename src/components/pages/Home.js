@@ -1,4 +1,5 @@
 import React from 'react'
+import Practice2 from '../Practice2'
 
 const Home = () => {
     return (
@@ -9,6 +10,11 @@ const Home = () => {
             height: '20vh'
         }}>
             <h1>Home</h1>
+            <br/>            
+            <br/>
+            <br/>
+
+           
         </div>
     )
 }

@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+# Giving Chain front end Code
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Please see video below for currently basic functionality. 
+This repo will be integrated with a backend and Hyperledger Firefly.
 
-## Available Scripts
+## Steps
 
 In the project directory, you can run:
 
+### `npm install`
+
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Early Code 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Currently Metamask can be connected to from the browser. 
+Each tab can upload a photo which will generate an ipfs-http call to upload 
+and generate a unique CID which will represent the NFT. This hash is used as part of the url 
+for the local infura node to host. 
 
-### `npm test`
+Later a pinning service for instance will be leveraged as a permanent solution.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ReactRouter is used to change pages in the NavBar. 
+Styling is also subject to change.
 
-### `npm run build`
+## Screenshots
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+General barebone UI snapshot: 
+<img width="1556" alt="Screen Shot 2021-09-12 at 8 04 07 PM" src="https://user-images.githubusercontent.com/17859699/133007118-8fea6f22-0cf3-4d30-a0e9-f381ab506743.png">
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Generates an ipfs CID hash for any image uploaded: 
+<img width="1595" alt="Screen Shot 2021-09-12 at 8 04 40 PM" src="https://user-images.githubusercontent.com/17859699/133007135-082c2a42-bbf5-4599-9426-9d11ec2b2467.png">
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Has capability of connecting with Metamask (potentially for logins)
+<img width="1589" alt="Screen Shot 2021-09-12 at 8 05 07 PM" src="https://user-images.githubusercontent.com/17859699/133007146-b0c1c46c-e8bb-4ce0-b8eb-48f9ae9ee4d3.png">
