@@ -44,8 +44,13 @@ function Navbar() {
             alert("Get metamask!")
         } else if(ethereum.networkVersion !== '1'){
             alert("Please Connect to Mainnet!");
+<<<<<<< HEAD
         }
         else{
+=======
+        } else {
+
+>>>>>>> 1f43183fd3da5859648eb5dda4a5145ddc5f4f4c
         ethereum.request({ method: 'eth_requestAccounts' })
             .then(accounts => {
                 console.log("Connected", accounts[0])

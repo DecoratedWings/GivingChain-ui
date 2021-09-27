@@ -92,7 +92,7 @@ export default function TxnCard(props) {
                         Donation- NFT
           </Typography>
                     <Typography variant="body2" color="text.secondary">
-                  {props.}
+                  {/* {props} */}
           </Typography>
                 </CardContent>
             </CardActionArea>
