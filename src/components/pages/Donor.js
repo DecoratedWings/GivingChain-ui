@@ -1,8 +1,15 @@
 import React from 'react'
 import IpfsUpload from '../ipfs-upload';
 import DonorUpload from '../Donor-Upload';
+import DonorForm from '../Forms/DonorForm';
+import Modal from '../Forms/Modal';
+import Button from 'react-bootstrap/Button';
+import AddDonation from '../Forms/Modal'
+
 
 const Donor = () => {
+    const [modalShow, setModalShow] = React.useState(false);
+
     return (
         <>
             <div style={{
@@ -18,11 +25,21 @@ const Donor = () => {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    height: '30vh'
+                    height: '40vh'
                 }}>
                     {/* <IpfsUpload /> */}
                     <DonorUpload />
-                   
+                    {/* <DonorForm /> */}
+
+                    <Button variant="primary" onClick={() => setModalShow(true)}>
+                        Launch  modal
+                    </Button>
+  
+                    <AddDonation
+                     show={modalShow}
+                        onHide={() => setModalShow(false)} 
+                        childComponent={<DonorForm/>}/>
+                    {/* <PracForm /> */}
                 </div>
             </>
         </>

@@ -6,12 +6,13 @@
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "@material-ui/core": "^4.12.3",
-    "@mui/material": "^5.0.1",
+    "@mui/material": "^5.0.3",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.4",
     "bootstrap": "^5.1.1",
+    "formik": "^2.2.9",
     "ipfs-http-client": "^52.0.3",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.3",
@@ -21,7 +22,8 @@
     "react-scripts": "4.0.3",
     "reactstrap": "^8.10.0",
     "styled-components": "^5.3.1",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "yup": "^0.32.10"
   },
   "scripts": {
     "start": "react-scripts start",

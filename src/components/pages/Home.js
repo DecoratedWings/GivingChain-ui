@@ -1,5 +1,6 @@
 import React from 'react'
 import Practice2 from '../Practice2'
+import DonorForm from '../Forms/DonorForm'
 
 const Home = () => {
     return (
@@ -14,8 +15,9 @@ const Home = () => {
             <br/>
             <br/>
 
+
            
-        </div>
+        </div> 
     )
 }
 
