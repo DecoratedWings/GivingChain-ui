@@ -32,7 +32,7 @@ const Donor = () => {
                     {/* <DonorForm /> */}
 
                     <Button variant="primary" onClick={() => setModalShow(true)}>
-                        Launch  modal
+                        Add Donation
                     </Button>
   
                     <AddDonation
