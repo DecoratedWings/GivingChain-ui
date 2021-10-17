@@ -137,7 +137,7 @@ function uploadData(file) {
         // "datatype": {
         //   "name": "Donation-NFT"
         // },
-        "value": `${file.name}`
+        "value": `${imgUpload}`
         // "hash" : file
 
     }).then(response => {
@@ -358,12 +358,14 @@ function uploadData(file) {
                                 type="file"
                                 required
                                 name="file"
-                                onChange={handleChange}
+                                onChange={(e) => {handleChange(e)
+                                onChange(e)
+                                console.log("UPLOAD!!!!!", imgUpload)}}
                                 isInvalid={!!errors.file}
                             />
-                            <Form.Control.Feedback type="invalid" tooltip>
+                            {/* <Form.Control.Feedback type="invalid" tooltip>
                                 {errors.file}
-                            </Form.Control.Feedback>
+                            </Form.Control.Feedback> */}
          </Form.Group>
           {/*Submit button that is disabled after button is clicked/form is in the process of submitting*/}
           <Button variant="primary" type="submit" disabled={isSubmitting}>
