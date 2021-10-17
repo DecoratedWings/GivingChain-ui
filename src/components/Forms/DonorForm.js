@@ -106,18 +106,47 @@ function mintNFT() {
 
 function uploadData(file) {
 
-  var bodyFormData = new FormData();
-  bodyFormData.append('autometa','true');
-  bodyFormData.append('file', file.name);
+//Returning 400: 
 
-  axios.post(dataUrl, bodyFormData, {
-    headers: { "Content-Type": "multipart/form-data" }
-  }).then((response)=> {
-      setDataId(response.id);
-      console.log("data uploaded with:" ,response);
+  // var bodyFormData = new FormData();
+  // bodyFormData.append('autometa','true');
+  // bodyFormData.append('value', 'hi');
+
+  // axios({
+  //   method: 'post',
+  //   url: dataUrl,
+  //   data: bodyFormData,
+  //   config: { headers: {'Content-Type': 'multipart/form-data' }}
+  //   }).then((response)=> {
+  //     setDataId(response.id);
+  //     console.log("data uploaded with:" ,response);
+  //   })
+  //   .catch(error=>console.log(error))
+
+  // axios.post(dataUrl, bodyFormData).then((response)=> {
+  //     setDataId(response.id);
+  //     console.log("data uploaded with:" ,response);
+  //   })
+  //   .catch(error=>console.log(error))
+  axios.post(dataUrl,
+    {
+        // "blob": {
+        //   "hash": file,
+        //   "public": "string"
+        // },
+        // "datatype": {
+        //   "name": "Donation-NFT"
+        // },
+        "value": `${file.name}`
+        // "hash" : file
+
+    }).then(response => {
+        console.log(response)
+        console.log(response.data.id)
+        alert(`Data Generated with Id: ${response.data.id}`)
+    }).catch(error => {
+        console.log(error)
     })
-    .catch(error=>console.log(error))
-
 }
 
   return(
