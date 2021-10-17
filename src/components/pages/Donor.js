@@ -12,23 +12,18 @@ const Donor = () => {
 
     return (
         <>
-            <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '20vh'
-            }}>
-                {/* <h1>Donor</h1> */}
-            </div>
             <>
                 <div style={{
                     display: 'flex',
-                    justifyContent: 'center',
+                    justifyContent: 'right',
                     alignItems: 'center',
-                    height: '40vh'
+                    height: '10vh',
+                    padding:'2vh'
                 }}>
                     {/* <IpfsUpload /> */}
-                    <DonorUpload />
+
+                    {/* <DonorUpload /> */}
+
                     {/* <DonorForm /> */}
 
                     <Button variant="primary" onClick={() => setModalShow(true)}>

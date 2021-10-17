@@ -5,8 +5,14 @@ import { Form, Row, Col, Button } from 'react-bootstrap';
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Alert from '@mui/material/Alert';
+import axios from "axios";
 
 
+
+const dataUrl = 'http://localhost:5000/api/v1/namespaces/default/data';
+const privateMsgUrl = 'http://localhost:5000/api/v1/namespaces/default/messages/private';
+const mintUrl = 'http://localhost:5000/api/v1/namespaces/default/tokens/erc1155/pools/donations/mint';
+const broadcastUrl = 'http://localhost:5000/api/v1/namespaces/default/messages/broadcast';
 
 // Schema for yup
 const validationSchema = Yup.object().shape({
@@ -27,6 +33,93 @@ const validationSchema = Yup.object().shape({
 });
 
 const DonorForm = () => {
+
+  const [imgUpload, setImgUpload] = React.useState(``);
+  const [dataId, setDataId] = React.useState(``);
+
+  async function onChange(e) {
+    const file = e.target.files[0]
+    try {
+      var blob;
+      var binaryData = [];
+      binaryData.push(file);
+      blob = window.URL.createObjectURL(new Blob(binaryData, {type: "application/zip"}))
+      setImgUpload(blob)
+      // updateTxn(pathAdd)
+      console.log('Image uploaded: ', file);
+    } catch (error) {
+      console.log(' Error uploading file: ', error)
+    }  
+  }
+
+function broadcastNFT(values){
+  axios.post(broadcastUrl, 
+    {
+      "data": [
+          {
+              "value": {
+                  "Message": "A donation has been created!",
+                  "ImageData" : `${dataId}`
+              }
+          }
+      ]
+  }).then(response=>console.log("broadcast response is",response))
+  .catch(error=>console.log(error))
+
+}
+
+
+function sendPrivateMessage(values, org) {
+  
+  axios.post(privateMsgUrl, 
+    {
+      "data": [
+          {
+              "value": `${JSON.stringify(values,null,2)}`
+          }
+      ],
+      "group": {
+          "members": [
+              {
+                  "identity": `${org}`
+              }
+          ]
+      }
+  }).then(response => {
+    alert(`Private Message Sent! ${response}`);
+    console.log(`Private Message Sent! ${response}`)
+  })
+  .catch(error=>console.log(error))
+  
+}
+
+function mintNFT() {
+  //ToDo: Add Message->data->id when available from ff 
+  axios.post(mintUrl, 
+    {
+      "amount": 1
+    })
+  .then(response=>console.log(response))
+  .catch(error=>console.log(error))
+
+}
+
+function uploadData(file) {
+
+  var bodyFormData = new FormData();
+  bodyFormData.append('autometa','true');
+  bodyFormData.append('file', file.name);
+
+  axios.post(dataUrl, bodyFormData, {
+    headers: { "Content-Type": "multipart/form-data" }
+  }).then((response)=> {
+      setDataId(response.id);
+      console.log("data uploaded with:" ,response);
+    })
+    .catch(error=>console.log(error))
+
+}
+
   return(
     // <h1>Example Formik Form</h1>
     <Formik
@@ -39,9 +132,18 @@ const DonorForm = () => {
           setSubmitting(true);
           // Simulate submitting to database, shows us values submitted, resets form
           setTimeout(() => {
-              //TODO: INSERT CALL TO SEND PRIVATE MESSAGE TO DB 
-              //TODO: INSERT CALL TO MINT NFT
+         
             alert(JSON.stringify(values, null, 2));
+        /////MAJOR TODO: Make this process 1 method with failure conditions
+              //TODO: Upload Data 
+              uploadData(values.file);
+              //TODO: INSERT CALL TO MINT NFT
+              mintNFT();
+              //TODO: BROADCAST
+              broadcastNFT();
+              //TODO: INSERT CALL TO SEND PRIVATE MESSAGE
+              sendPrivateMessage(values, 'org_1');
+
         
             resetForm();
             setSubmitting(false);
@@ -219,6 +321,7 @@ const DonorForm = () => {
               ): null}
           </Form.Group>
 
+        
           <Form.Group className="position-relative mb-3">
                             <Form.Label>File Upload</Form.Label>
                             <br/>

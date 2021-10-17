@@ -8,7 +8,7 @@ import axios from "axios";
 
 const baseUrl = 'http://localhost:5000/api/v1/namespaces/default/messages/broadcast';
 const msgUrl = 'http://localhost:5000/api/v1/namespaces/default/data';
-const privateMsgUrl = 'http://localhost:5000/api/v1/namespaces/default/messages/private'
+const privateMsgUrl = 'http://localhost:5000/api/v1/namespaces/default/messages/private';
 
 
 export default function NFTCard(props) {

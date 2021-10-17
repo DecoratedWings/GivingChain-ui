@@ -7,6 +7,8 @@ import Driver from './components/pages/Driver';
 import Donor from './components/pages/Donor';
 import NGO from './components/pages/NGO';
 import Recipient from './components/pages/Recipient';
+import Admin from './components/pages/Admin';
+
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
           <Route path="/driver" exact component={Driver}/>
           <Route path="/ngo" exact component={NGO}/>
           <Route path="/recipient" exact component={Recipient}/>
+          <Route path="/admin" exact component={Admin}/>
         </Switch>
       </Router>
     </div>

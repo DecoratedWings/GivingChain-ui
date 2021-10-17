@@ -20,7 +20,7 @@ export default function AddDonation(props) {
             {props.childComponent}
         </Modal.Body>
         <Modal.Footer>
-            <Button onClick={props.onHide}>Close </Button>
+            <Button onClick={props.onHide}>Close</Button>
           {/* <Button onClick={props.onHide}>Close</Button> */}
         </Modal.Footer>
       </Modal>
