@@ -5,10 +5,28 @@ import DonorForm from '../Forms/DonorForm';
 import Modal from '../Forms/Modal';
 import Button from 'react-bootstrap/Button';
 import AddDonation from '../Forms/Modal'
+import NFTCard from '../Card'
+import axios from 'axios'
 
 
 const Donor = () => {
     const [modalShow, setModalShow] = React.useState(false);
+
+    const dataUrl = 'http://localhost:5000/api/v1/namespaces/images/data';
+
+    const [data, setData] = React.useState(``);
+    const [error, setError] = React.useState(``);
+
+    function getNFTs(){
+        axios.post(dataUrl)
+            .then(response=>{
+                console.log(response);
+                setData(response);
+            }).catch(error=>{
+                console.log(error)
+                setError(error)
+            })
+    }
 
     return (
         <>
@@ -37,6 +55,9 @@ const Donor = () => {
                     {/* <PracForm /> */}
                 </div>
             </>
+            
+            <NFTCard img={data.value}/>
+
         </>
     )
 }

@@ -9,7 +9,7 @@ import axios from "axios";
 
 
 
-const dataUrl = 'http://localhost:5000/api/v1/namespaces/default/data';
+const dataUrl = 'http://localhost:5000/api/v1/namespaces/images/data';
 const privateMsgUrl = 'http://localhost:5000/api/v1/namespaces/default/messages/private';
 const mintUrl = 'http://localhost:5000/api/v1/namespaces/default/tokens/erc1155/pools/donations/mint';
 const broadcastUrl = 'http://localhost:5000/api/v1/namespaces/default/messages/broadcast';
@@ -40,11 +40,11 @@ const DonorForm = () => {
   async function onChange(e) {
     const file = e.target.files[0]
     try {
-      var blob;
-      var binaryData = [];
-      binaryData.push(file);
-      blob = window.URL.createObjectURL(new Blob(binaryData, {type: "application/zip"}))
-      setImgUpload(blob)
+      // var blob;
+      // var binaryData = [];
+      // binaryData.push(file);
+      // blob = window.URL.createObjectURL(new Blob(binaryData, {type: "application/zip"}))
+      setImgUpload(file)
       // updateTxn(pathAdd)
       console.log('Image uploaded: ', file);
     } catch (error) {
@@ -128,6 +128,7 @@ function uploadData(file) {
   //     console.log("data uploaded with:" ,response);
   //   })
   //   .catch(error=>console.log(error))
+  console.log("file before data upload",imgUpload)
   axios.post(dataUrl,
     {
         // "blob": {
@@ -165,7 +166,7 @@ function uploadData(file) {
             alert(JSON.stringify(values, null, 2));
         /////MAJOR TODO: Make this process 1 method with failure conditions
               //TODO: Upload Data 
-              uploadData(values.file);
+              uploadData();
               //TODO: INSERT CALL TO MINT NFT
               mintNFT();
               //TODO: BROADCAST
