@@ -27,6 +27,16 @@ const Donor = () => {
                 setError(error)
             })
     }
+    function getImageBlobs(id) {
+        axios.post(`${dataUrl}/${id}/blob`)
+        .then(response=>{
+            console.log(response);
+            setData(Object.keys(response[0]));
+        }).catch(error=>{
+            console.log(error)
+            setError(error)
+        })
+    }
 
     return (
         <>
@@ -55,7 +65,7 @@ const Donor = () => {
                     {/* <PracForm /> */}
                 </div>
             </>
-            
+            {/* {getNFTs()} */}
             <NFTCard img={data.value}/>
 
         </>

@@ -73,7 +73,7 @@ class DriverUpdates extends Component {
                         {/* {item.created} | {item.description}
                         {item.message} | {item.name}
                         {item.id} | {item.type} */}
-                        Timestamp: {item.confirmed}
+                        Timestamp: {item.header.confirmed}
                         <ul>
                         <br/>
                        Type: {item.header.type} 

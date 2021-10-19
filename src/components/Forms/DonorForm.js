@@ -44,6 +44,7 @@ const DonorForm = () => {
       // var binaryData = [];
       // binaryData.push(file);
       // blob = window.URL.createObjectURL(new Blob(binaryData, {type: "application/zip"}))
+      // var uri = URL.createObjectURL(file)
       setImgUpload(file)
       // updateTxn(pathAdd)
       console.log('Image uploaded: ', file);
@@ -104,50 +105,20 @@ function mintNFT() {
 
 }
 
-function uploadData(file) {
+function uploadData() {
+  var bodyFormData = new FormData();
+  bodyFormData.append('autometa','true');
+  bodyFormData.append('file', imgUpload);
 
-//Returning 400: 
-
-  // var bodyFormData = new FormData();
-  // bodyFormData.append('autometa','true');
-  // bodyFormData.append('value', 'hi');
-
-  // axios({
-  //   method: 'post',
-  //   url: dataUrl,
-  //   data: bodyFormData,
-  //   config: { headers: {'Content-Type': 'multipart/form-data' }}
-  //   }).then((response)=> {
-  //     setDataId(response.id);
-  //     console.log("data uploaded with:" ,response);
-  //   })
-  //   .catch(error=>console.log(error))
-
-  // axios.post(dataUrl, bodyFormData).then((response)=> {
-  //     setDataId(response.id);
-  //     console.log("data uploaded with:" ,response);
-  //   })
-  //   .catch(error=>console.log(error))
-  console.log("file before data upload",imgUpload)
-  axios.post(dataUrl,
-    {
-        // "blob": {
-        //   "hash": file,
-        //   "public": "string"
-        // },
-        // "datatype": {
-        //   "name": "Donation-NFT"
-        // },
-        "value": `${imgUpload}`
-        // "hash" : file
-
-    }).then(response => {
-        console.log(response)
-        console.log(response.data.id)
-        alert(`Data Generated with Id: ${response.data.id}`)
-    }).catch(error => {
-        console.log(error)
+  axios({
+    method: 'post',
+    url: dataUrl,
+    data: bodyFormData
+    }).then((response)=> {
+      console.log("data uploaded with:" ,response);
     })
+    .catch(error=>console.log(error))
+
 }
 
   return(
