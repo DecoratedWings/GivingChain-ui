@@ -5,7 +5,9 @@ import DonorForm from '../Forms/DonorForm';
 import Modal from '../Forms/Modal';
 import Button from 'react-bootstrap/Button';
 import AddDonation from '../Forms/Modal'
-import NFTCard from '../Card'
+import NFTCard from '../Card';
+import NFTUpdates from '../NFTUpdates';
+import Album from '../Album'
 import axios from 'axios'
 
 
@@ -41,6 +43,8 @@ const Donor = () => {
     return (
         <>
             <>
+            <Album />
+
                 <div style={{
                     display: 'flex',
                     justifyContent: 'right',
@@ -53,6 +57,7 @@ const Donor = () => {
                     {/* <DonorUpload /> */}
 
                     {/* <DonorForm /> */}
+                    {/* <NFTUpdates /> */}
 
                     <Button variant="primary" onClick={() => setModalShow(true)}>
                         Add Donation
@@ -66,7 +71,7 @@ const Donor = () => {
                 </div>
             </>
             {/* {getNFTs()} */}
-            <NFTCard img={data.value}/>
+            {/* <NFTCard img={data.value}/> */}
 
         </>
     )

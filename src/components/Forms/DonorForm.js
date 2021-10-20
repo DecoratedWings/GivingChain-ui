@@ -40,31 +40,28 @@ const DonorForm = () => {
   async function onChange(e) {
     const file = e.target.files[0]
     try {
-      // var blob;
-      // var binaryData = [];
-      // binaryData.push(file);
-      // blob = window.URL.createObjectURL(new Blob(binaryData, {type: "application/zip"}))
-      // var uri = URL.createObjectURL(file)
       setImgUpload(file)
-      // updateTxn(pathAdd)
       console.log('Image uploaded: ', file);
     } catch (error) {
       console.log(' Error uploading file: ', error)
     }  
   }
 
-function broadcastNFT(values){
+function broadcastNFT(){
   axios.post(broadcastUrl, 
     {
       "data": [
           {
               "value": {
                   "Message": "A donation has been created!",
-                  "ImageData" : `${dataId}`
+                  "ImageData" : `data id is: ${dataId}`
               }
           }
       ]
-  }).then(response=>console.log("broadcast response is",response))
+  }).then(response=>{
+    console.log("broadcast response is",response)
+    alert(JSON.stringify(response))
+  })
   .catch(error=>console.log(error))
 
 }
@@ -110,12 +107,12 @@ function uploadData() {
   bodyFormData.append('autometa','true');
   bodyFormData.append('file', imgUpload);
 
-  axios({
-    method: 'post',
-    url: dataUrl,
-    data: bodyFormData
-    }).then((response)=> {
+  axios.post(dataUrl, bodyFormData)
+      .then((response)=> {
       console.log("data uploaded with:" ,response);
+      setDataId(JSON.stringify(response))
+      alert("DATA UPLOAD:", response)
+      console.log("response ID IS: ::::", dataId)
     })
     .catch(error=>console.log(error))
 
