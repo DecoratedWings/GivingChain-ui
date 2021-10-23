@@ -1,0 +1,30 @@
+import React from 'react';
+import Modal from 'react-bootstrap/Modal';
+import Button from '@material-ui/core/Button';
+
+
+export default function NFTModal(props) {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header >
+          <Modal.Title id="contained-modal-title-vcenter">
+            <h2>Donation Details</h2>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+           This NFT Currently Belongs to: 
+           "Dummy account need to add logic"
+           {props.id}
+        </Modal.Body>
+        <Modal.Footer>
+            <Button onClick={props.onHide}>Close</Button>
+          {/* <Button onClick={props.onHide}>Close</Button> */}
+        </Modal.Footer>
+      </Modal>
+    );
+  }

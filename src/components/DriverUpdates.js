@@ -7,6 +7,25 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 import axios from "axios";
 
 const baseUrl = 'http://localhost:5000/api/v1';
+const messages =[];
+
+function getMessage(id){
+    console.log("hit here", id)
+    var message;
+    axios.get(`http://localhost:5000/api/v1/namespaces/default/messages/${id.header.id}/data`)
+    .then(response=>{
+        // response = response.json();
+  
+        message=response.data[0].value;
+        messages.push(message)
+        // console.log(message)
+        // this.messages.push(message)
+        console.log("value is", message)
+
+    }).catch(error=>console.log(error))
+
+    return message;
+}
 
 
 class DriverUpdates extends Component {
@@ -18,6 +37,8 @@ class DriverUpdates extends Component {
             isLoaded: false,
         };
     }
+
+    
 
     componentDidMount() {
         //http://localhost:5000/namespaces
@@ -33,10 +54,20 @@ class DriverUpdates extends Component {
             })
         });
 
+        var ids = this.state.items;
+        var msgs=[];
+        for(var i=0; i<ids.length-1;i++){
+            msgs.push(getMessage(ids[i].header.id));
+        }
+        this.setState({
+            messages: msgs,
+        })
     }
 
 
     render() {
+        console.log("item array:", this.state.items)
+        console.log("message array:", this.state.messages)
 
         var {isLoaded, items} = this.state;
         if(!isLoaded){
@@ -47,6 +78,7 @@ class DriverUpdates extends Component {
               return<div>Item: {item.value.dx.peer}</div>
             }
         }
+
         
         return (
             <div style={{display: 'flex',
@@ -73,11 +105,13 @@ class DriverUpdates extends Component {
                         {/* {item.created} | {item.description}
                         {item.message} | {item.name}
                         {item.id} | {item.type} */}
-                        Timestamp: {item.header.confirmed}
+                        Timestamp: {item.confirmed}
                         <ul>
                         <br/>
                        Type: {item.header.type} 
                        <br/> 
+                        {console.log(`Message is ${getMessage(item)}`)}
+                       Message: {getMessage(item)}
                        {/* Version Data: {item.value.owner} */}
                         {/* {console.log(item.value.dx)} */}
                         {/* <li>{check(item)}</li> */}

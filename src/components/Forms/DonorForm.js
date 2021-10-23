@@ -35,7 +35,7 @@ const validationSchema = Yup.object().shape({
 const DonorForm = () => {
 
   const [imgUpload, setImgUpload] = React.useState(``);
-  const [dataId, setDataId] = React.useState(``);
+  const [dataId, setDataId] = React.useState();
 
   async function onChange(e) {
     const file = e.target.files[0]
@@ -54,7 +54,7 @@ function broadcastNFT(){
           {
               "value": {
                   "Message": "A donation has been created!",
-                  "ImageData" : `data id is: ${dataId}`
+                  // "ImageData" : `data id is: ${dataId}`
               }
           }
       ]
@@ -84,7 +84,7 @@ function sendPrivateMessage(values, org) {
           ]
       }
   }).then(response => {
-    alert(`Private Message Sent! ${response}`);
+    // alert(`Private Message Sent! ${response}`);
     console.log(`Private Message Sent! ${response}`)
   })
   .catch(error=>console.log(error))
@@ -95,7 +95,12 @@ function mintNFT() {
   //ToDo: Add Message->data->id when available from ff 
   axios.post(mintUrl, 
     {
-      "amount": 1
+      "amount": 1,
+      "message": {
+        "data": [{
+            "id": "dbad79c7-d8f2-4646-9774-034517866086"
+        }]
+    }
     })
   .then(response=>console.log(response))
   .catch(error=>console.log(error))
@@ -110,8 +115,10 @@ function uploadData() {
   axios.post(dataUrl, bodyFormData)
       .then((response)=> {
       console.log("data uploaded with:" ,response);
-      setDataId(JSON.stringify(response))
-      alert("DATA UPLOAD:", response)
+      console.log("data uploaded 2:" ,response.data);
+      console.log("data uploaded 3:" ,response.data.id);
+      setDataId(JSON.stringify(response.data))
+      alert("DATA UPLOAD:", JSON.stringify(response.data))
       console.log("response ID IS: ::::", dataId)
     })
     .catch(error=>console.log(error))

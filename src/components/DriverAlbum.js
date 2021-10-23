@@ -59,13 +59,7 @@ console.log("cards is: ", cards);
 // document.body.style.backgroundColor = "#008000";
 
 
-const theme = createTheme({
-    palette: {
-        primary: {
-            main: '#008000'
-        }
-    }
-});
+const theme = createTheme();
 const nftUrl = 'http://localhost:5000/api/v1/namespaces/images/data'
 
 
@@ -82,7 +76,7 @@ export default function Album() {
         <Toolbar>
           <CameraIcon sx={{ mr: 2 }} />
           <Typography variant="h6" color="inherit" noWrap>
-            NFT Collection
+            Donations Eligible for pickup
           </Typography>
         </Toolbar>
       </AppBar>
@@ -103,12 +97,11 @@ export default function Album() {
               color="text.primary"
               gutterBottom
             >
-              On-Chain Donations
+              On-Chain Transport Updates
             </Typography>
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
-              Contributions made by donors are minted as NFTs on Firefly&apos;s
-              private blockchain network. To initiate a transfer please select
-              'transfer' in order to migrate the ownership to transport on pickup.
+              Transport may select the donation they wish to pickup and view specific 
+              address details. Broadcast status updates for each donation
             </Typography>
             <Stack
               sx={{ pt: 4 }}
@@ -116,13 +109,13 @@ export default function Album() {
               spacing={2}
               justifyContent="center"
             >
-                 <AddDonation
+                 {/* <AddDonation
                      show={modalShow}
                         onHide={() => setModalShow(false)} 
                         childComponent={<DonorForm/>}/>
 
                 <InfoModal show={infoModalShow}
-                    onHide={() => setInfoModalShow(false)}/>
+                    onHide={() => setInfoModalShow(false)}/> */}
 
               <Button variant="contained" onClick={() => setModalShow(true)}>Add Donation</Button>
               <Button variant="outlined" onClick={() => setInfoModalShow(true)}>Why NFT Donations?</Button>
@@ -139,23 +132,23 @@ export default function Album() {
                 >
              <CardActionArea>
 
-             <NFTModal show={nftModalShow}
+             {/* <NFTModal show={nftModalShow}
                  onHide={() => setNFTModalShow(false)}
-                 id={card.id} />
+                 id={card.id} /> */}
 
                     {console.log("CARD IS", card.id)}
-                  <CardMedia
+                  {/* <CardMedia
                     component="img"
                     sx={{
                       // 16:9
                       pt: '0%',
                     }}
                     // image="https://source.unsplash.com/random"
-                    image={`http://localhost:5000/api/v1/namespaces/images/data/${card.id}/blob`}
+                    // image={`http://localhost:5000/api/v1/namespaces/images/data/${card.id}/blob`}
                     alt="random"
                     display='flex'
                     justifyContent='center'
-                  />
+                  /> */}
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
                       Donation number: {cards.length-cards.indexOf(card)}
