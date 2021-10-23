@@ -22,7 +22,7 @@ export default function InfoModal(props) {
             As a donor you are empowered to have full traceability of immutabile on chain data.
             Please select 'add donation' and enter relevant details. contribution upon submission.
             For more information please see the following Linux Foundation article: &nbsp; 
-            <Link url='https://www.hyperledger.org/blog/2021/08/25/the-giving-chain-blockchain-powering-generosity'>
+            <Link href='https://www.hyperledger.org/blog/2021/08/25/the-giving-chain-blockchain-powering-generosity'>
              Blockchain Powering Generosity
             </Link>
         </Modal.Body>

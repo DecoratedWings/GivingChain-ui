@@ -6,13 +6,12 @@ import Album from '../Album'
 
 
 const Donor = () => {
-    const [modalShow, setModalShow] = React.useState(false);
+    // const [modalShow, setModalShow] = React.useState(false);
 
     return (
         <>
-            <>
 
-                <div >
+                {/* <div > */}
                     {/* <IpfsUpload /> */}
 
                     {/* <DonorUpload /> */}
@@ -30,10 +29,10 @@ const Donor = () => {
                         childComponent={<DonorForm/>}/> */}
                     {/* <PracForm /> */}
 
-               </div>
+               {/* </div> */}
                <Album />
 
-            </>
+        
         </>
     )
 }

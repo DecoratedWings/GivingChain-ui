@@ -22,6 +22,11 @@ import DonorForm from './Forms/DonorForm';
 import AddDonation from './Forms/AddDonation';
 import InfoModal from './Forms/InfoModal';
 import NFTModal from './Forms/NFTModal';
+import IconButton from '@mui/material/IconButton';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import Badge from '@mui/material/Badge';
+import MailIcon from '@mui/icons-material/Mail';
+
 
 
 
@@ -38,19 +43,33 @@ function Copyright() {
   );
 }
 const dataUrl = 'http://localhost:5000/api/v1/namespaces/images/data';
+const driverTransferUrl = 'http://localhost:5000/api/v1/namespaces/default/tokens/erc1155/pools/donations/transfers';
 
 function getNFTImageIds(){
     var Ids = new Array();
     axios.get(dataUrl)
     .then(response=>{
         console.log("response length", response.data.length)
-        for(var i=0; i<response.data.length-1;i++){
+        for(var i=0; i<response.data.length-1;i++) {
             Ids.push(response.data[i]);
             console.log(response[i])
         }
         console.log(response)
     }).catch(error=>console.log(error))
     return Ids;
+}
+
+function transferNFTDriver(index){
+    axios.post(driverTransferUrl, {
+        "to": "0x7fa933448ae2b28815007b24f1e0b06adacecdb7",
+        "tokenIndex": `${index}`,
+        "amount": 1
+    }).then(response=> {
+        console.log(response);
+        console.log(`data: ${response.data.type}`)
+        if(response.data.type==='transfer')
+            alert("The NFT was transfered to the driver successfully!");
+    }).catch(error=>console.log(error))
 }
 
 // const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -74,7 +93,6 @@ export default function Album() {
     const [infoModalShow, setInfoModalShow] = React.useState(false);
     const [nftModalShow, setNFTModalShow] = React.useState(false);
 
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -84,6 +102,23 @@ export default function Album() {
           <Typography variant="h6" color="inherit" noWrap>
             NFT Collection
           </Typography>
+
+          <Grid item xs/>
+
+          <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          <Badge badgeContent={4} color="error">
+            <MailIcon />
+          </Badge>
+        </IconButton>
+        
+          <IconButton
+          size="large"
+          color="inherit"
+        >
+          <Badge badgeContent={5} color="error">
+            <NotificationsIcon />
+          </Badge>
+        </IconButton>
         </Toolbar>
       </AppBar>
       <main>
@@ -167,7 +202,7 @@ export default function Album() {
                   </CardActionArea>
                   <CardActions>
                     <Button size="small" onClick={()=>setNFTModalShow(true)}>View</Button>
-                    <Button size="small">Transfer</Button>
+                    <Button size="small"onClick={()=>transferNFTDriver(cards.indexOf(card)+1)}>Transfer</Button>
                   </CardActions>
                 </Card>
               </Grid>

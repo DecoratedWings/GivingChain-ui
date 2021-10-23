@@ -1,7 +1,7 @@
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
-import CameraIcon from '@mui/icons-material/PhotoCamera';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -22,6 +22,10 @@ import DonorForm from './Forms/DonorForm';
 import AddDonation from './Forms/AddDonation';
 import InfoModal from './Forms/InfoModal';
 import NFTModal from './Forms/NFTModal';
+import IconButton from '@mui/material/IconButton';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import Badge from '@mui/material/Badge';
+import MailIcon from '@mui/icons-material/Mail';
 
 
 
@@ -37,7 +41,23 @@ function Copyright() {
     </Typography>
   );
 }
-const dataUrl = 'http://localhost:5000/api/v1/namespaces/images/data';
+
+
+function getNFTImageIdsForTransfer(){
+    var Ids = new Array();
+    axios.get(dataUrl)
+    .then(response=>{
+        console.log("response length", response.data.length)
+        for(var i=0; i<response.data.length-1;i++){
+            Ids.push(response.data[i]);
+            console.log(response[i])
+        }
+        console.log(response)
+    }).catch(error=>console.log(error))
+    return Ids;
+}
+
+const dataUrl = 'http://localhost:5001/api/v1/namespaces/default/data';
 
 function getNFTImageIds(){
     var Ids = new Array();
@@ -53,6 +73,27 @@ function getNFTImageIds(){
     return Ids;
 }
 
+const transferCards = getNFTImageIdsForTransfer();
+console.log("transferCards is: ", transferCards);
+
+
+const recipientTransferUrl = `http://localhost:5001/api/v1/namespaces/default/tokens/erc1155/pools/donations/transfers`;
+
+function transferNFTRecipient(index){
+    var pos = transferCards.indexOf(index);
+    axios.post(recipientTransferUrl, {
+        "to": "0xf70d6e97d67e36883b510f63c882832a8398e090",
+        "tokenIndex": `${pos}`,
+        "amount": 1
+    }).then(response=> {
+        console.log(response);
+        console.log(`data: ${response.data.type}`)
+        if(response.data.type==='transfer')
+            alert("The NFT was transfered to the recipient successfully!");
+    }).catch(error=>console.log(error))
+}
+
+
 // const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const cards = getNFTImageIds();
 console.log("cards is: ", cards);
@@ -60,7 +101,7 @@ console.log("cards is: ", cards);
 
 
 const theme = createTheme();
-const nftUrl = 'http://localhost:5000/api/v1/namespaces/images/data'
+const nftUrl = 'http://localhost:5001/api/v1/namespaces/images/data'
 
 
 export default function Album() {
@@ -74,10 +115,27 @@ export default function Album() {
       <CssBaseline />
       <AppBar position="relative">
         <Toolbar>
-          <CameraIcon sx={{ mr: 2 }} />
+          <LocalShippingIcon sx={{ mr: 2 }} />
           <Typography variant="h6" color="inherit" noWrap>
             Donations Eligible for pickup
           </Typography>
+
+          <Grid item xs/>
+
+          <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          <Badge badgeContent={8} color="error">
+            <MailIcon />
+          </Badge>
+        </IconButton>
+
+          <IconButton
+          size="large"
+          color="inherit"
+        >
+          <Badge badgeContent={12} color="error">
+            <NotificationsIcon />
+          </Badge>
+        </IconButton>
         </Toolbar>
       </AppBar>
       <main>
@@ -97,13 +155,13 @@ export default function Album() {
               color="text.primary"
               gutterBottom
             >
-              On-Chain Transport Updates
+             Transport Updates
             </Typography>
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
               Transport may select the donation they wish to pickup and view specific 
-              address details. Broadcast status updates for each donation
+              address details. Status updates are broadcast to the entire network.
             </Typography>
-            <Stack
+            {/* <Stack
               sx={{ pt: 4 }}
               direction="row"
               spacing={2}
@@ -117,24 +175,24 @@ export default function Album() {
                 <InfoModal show={infoModalShow}
                     onHide={() => setInfoModalShow(false)}/> */}
 
-              <Button variant="contained" onClick={() => setModalShow(true)}>Add Donation</Button>
-              <Button variant="outlined" onClick={() => setInfoModalShow(true)}>Why NFT Donations?</Button>
-            </Stack>
+              {/* <Button variant="contained" onClick={() => setModalShow(true)}>Add Donation</Button> */}
+              {/* <Button variant="outlined" onClick={() => setInfoModalShow(true)}>Why NFT Donations?</Button> */}
+            {/* </Stack>  */}
           </Container>
         </Box>
-        <Container sx={{ py: 8 }} maxWidth="xl">
+        <Container sx={{ py: 8 }} maxWidth="2xl">
           {/* End hero unit */}
           <Grid container spacing={4}>
             {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={3}>
+              <Grid item key={card} xs={12} sm={6} md={6}>
                 <Card
                   sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                 >
              <CardActionArea>
 
-             {/* <NFTModal show={nftModalShow}
+             <NFTModal show={nftModalShow}
                  onHide={() => setNFTModalShow(false)}
-                 id={card.id} /> */}
+                 id={card.id} />
 
                     {console.log("CARD IS", card.id)}
                   {/* <CardMedia
@@ -144,7 +202,7 @@ export default function Album() {
                       pt: '0%',
                     }}
                     // image="https://source.unsplash.com/random"
-                    // image={`http://localhost:5000/api/v1/namespaces/images/data/${card.id}/blob`}
+                    image={`http://localhost:5000/api/v1/namespaces/images/data/${card.id}/blob`}
                     alt="random"
                     display='flex'
                     justifyContent='center'
@@ -156,11 +214,13 @@ export default function Album() {
                     <Typography>
                       TxnId: <br/>{card.id}
                     </Typography>
+            
                   </CardContent>
                   </CardActionArea>
                   <CardActions>
-                    <Button size="small" onClick={()=>setNFTModalShow(true)}>View</Button>
-                    <Button size="small">Transfer</Button>
+                    <Button size="small" onClick={()=>setNFTModalShow(true)}>Details</Button>
+                    <Button size="small" onClick={()=>setNFTModalShow(true)}>Send Message</Button>
+                    <Button size="small"onClick={()=>transferNFTRecipient()}>Transfer</Button>
                   </CardActions>
                 </Card>
               </Grid>
