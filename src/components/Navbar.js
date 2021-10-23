@@ -8,6 +8,7 @@ import {
     NavBtn,
     NavBtnLink
 } from './NavbarElements';
+import FF from './images/ffLogo.png'
 
 function Navbar() {
     const [currAccount, setCurrentAccount] = React.useState("");
@@ -81,9 +82,9 @@ function Navbar() {
      * 
      *  */
     return (
-        <>
+        <>  
             <Nav>
-                <NavLink to="/">
+                  <NavLink to="/">
                     <h1>The Giving Chain</h1>
                 </NavLink>
                 <Bars />
@@ -102,7 +103,7 @@ function Navbar() {
                  </NavLink>
                 </NavMenu>
                 {currAccount ?
-                    <NavBtn>
+                    <NavBtn >
                         <NavBtnLink to='/' onClick={disconnectWallet} style={{
                             backgroundColor: 'green'
                         }}>Connected</NavBtnLink>
