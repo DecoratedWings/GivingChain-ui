@@ -7,6 +7,15 @@ import { AppBar, IconButton, Toolbar, Collapse } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Link as Scroll } from 'react-scroll';
 import SortIcon from '@material-ui/icons/Sort';
+import HomeScroll from '../HomeScroll.js'
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import Link from '@mui/material/Link';
+import axios from 'axios';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { CardActionArea } from '@mui/material';
+import { SocialIcon } from 'react-social-icons';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -46,6 +55,19 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '4rem',
     },
   }));
+
+  function Copyright() {
+    return (
+      <Typography variant="body2" color="text.secondary" align="center">
+        {'Copyright © '}
+        <Link color="inherit" href="https://thegivingchain.org/index.html">
+          The Giving Chain
+        </Link>{' '}
+        {new Date().getFullYear()}
+        {'.'}
+      </Typography>
+    );
+  }
 
 
 const Home = () => {
@@ -96,47 +118,33 @@ const Home = () => {
       </Collapse>
 
 
-            {/* <Collapse in={checked} 
-            {...(checked ? {timeout: 1000} : {})}
-            // collapsedHeight={15}
-            > */}
+        </div>
+        <HomeScroll />
+         {/* Footer */}
+      <Box sx={{ bgcolor: 'background.paper', p: 4 }} component="footer">
+        <Typography variant="h6" align="center" gutterBottom>
+        <SocialIcon url="https://www.facebook.com/TheGivingChain/" network="facebook" style={{ height: 50, width: 50 }} />
+        &nbsp;
+        <SocialIcon url="https://www.instagram.com/thegivingchain/" network="instagram" style={{ height: 50, width: 50 }} />
+        &nbsp;      
+        <SocialIcon url="https://t.me/BCPrinceton" network="telegram" style={{ height: 50, width: 50 }} />
+        &nbsp;         
+        <SocialIcon url="https://twitter.com/bc_princeton" network="twitter" style={{ height: 50, width: 50 }} />
+        &nbsp;   
+        <SocialIcon url="https://www.linkedin.com/groups/9055378/" network="linkedin" style={{ height: 50, width: 50 }} />
 
-            {/* <div style={{
-                margin:"20vh"
-            }}> */}
-            {/* <h1 style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '20vh',
-                color:"white",
-                // margin:"20vh"
-            }}>Blockchain Powering Generosity</h1> */}
-             {/* <Toolbar className={classes.appbarWrapper}>
-          <h1 className={classes.appbarTitle}>
-            My<span className={classes.colorText}>Island.</span>
-          </h1>
-          <IconButton>
-            <SortIcon className={classes.icon} />
-          </IconButton>
-        </Toolbar>
+        </Typography>
+        <Typography
+          variant="subtitle1"
+          align="center"
+          color="text.black"
+          component="p"
+        >
+          Blockchain Powering Generosity
+        </Typography>
+        <Copyright />
+      </Box>
 
-            <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                // height: '30vh',
-                color:"white",
-                // margin:"20vh"
-            }}>
- 
-           {/* <img src={HL} alt="Logo" />; */}
-         
-           {/* </div>
-           </div>
-           </Collapse> */}
-
-</div>
 
          </>
     )
