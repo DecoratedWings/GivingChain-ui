@@ -45,17 +45,16 @@ export default function HomeCard(props) {
             <CardActionArea>
                 <CardMedia
                     component="img"
-                    height="340"
-                    image={null}
+                    height="440"
+                    image={props.img}
                     alt="N/A"
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                        Project Name
+                        Project {props.proj}
           </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        User would input a description of the item and any other pertinent
-                        information that they would like to share with the network.
+                       {props.description}
           </Typography>
                 </CardContent>
             </CardActionArea>
