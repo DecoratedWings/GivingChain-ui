@@ -52,7 +52,7 @@ export default function HomeCard(props) {
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                         Project {props.proj}
-          </Typography>
+                    </Typography>
                     <Typography variant="body2" color="text.secondary">
                        {props.description}
           </Typography>

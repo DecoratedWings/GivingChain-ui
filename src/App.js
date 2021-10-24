@@ -11,6 +11,7 @@ import Admin from './components/pages/Admin';
 
 
 function App() {
+  // document.bgColor='#F5F0EF'
   return (
     <div className="App">
 

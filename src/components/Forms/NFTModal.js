@@ -40,8 +40,8 @@ export default function NFTModal(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-           This NFT Currently Belongs to: 
-           "Dummy account need to add logic"
+           {/* This NFT Currently Belongs to: 
+           "Dummy account need to add logic" */}
            {getDonationPrivateDetails(props.id)}
            {/* {console.log("PROPS VALUE", props.value)} */}
            {info}

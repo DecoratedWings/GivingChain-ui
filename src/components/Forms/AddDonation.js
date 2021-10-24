@@ -13,7 +13,7 @@ export default function AddDonation(props) {
       >
         <Modal.Header >
           <Modal.Title id="contained-modal-title-vcenter">
-            <h2>Giving Chain Donor Submission Form:</h2>
+            <h2>Giving Chain {props.org} Submission Form:</h2>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

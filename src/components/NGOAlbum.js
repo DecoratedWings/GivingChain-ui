@@ -26,7 +26,8 @@ import IconButton from '@mui/material/IconButton';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import Badge from '@mui/material/Badge';
 import MailIcon from '@mui/icons-material/Mail';
-
+import BusinessIcon from '@mui/icons-material/Business';
+import NGOForm from './Forms/NGOForm.js';
 
 
 
@@ -81,14 +82,14 @@ console.log("cards is: ", cards);
 const theme = createTheme({
     palette: {
         primary: {
-            main: '#008000'
+            main: '#FDDA0D'
         }
     }
 });
-const nftUrl = 'http://localhost:5000/api/v1/namespaces/images/data'
+const ngoRequests = 'http://localhost:5000/api/v1/namespaces/ngoRequests/data'
 
 
-export default function Album() {
+export default function NGOAlbum() {
     const [modalShow, setModalShow] = React.useState(false);
     const [infoModalShow, setInfoModalShow] = React.useState(false);
     const [nftModalShow, setNFTModalShow] = React.useState(false);
@@ -98,15 +99,15 @@ export default function Album() {
       <CssBaseline />
       <AppBar position="relative">
         <Toolbar>
-          <CameraIcon sx={{ mr: 2 }} />
+          <BusinessIcon sx={{ mr: 2 }} />
           <Typography variant="h6" color="inherit" noWrap>
-            NFT Collection
+            NGO Request Donation
           </Typography>
 
           <Grid item xs/>
 
           <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
+          <Badge badgeContent={2} color="error">
             <MailIcon />
           </Badge>
         </IconButton>
@@ -115,7 +116,7 @@ export default function Album() {
           size="large"
           color="inherit"
         >
-          <Badge badgeContent={5} color="error">
+          <Badge badgeContent={1} color="error">
             <NotificationsIcon />
           </Badge>
         </IconButton>
@@ -138,12 +139,12 @@ export default function Album() {
               color="text.primary"
               gutterBottom
             >
-              On-Chain Donations
+              Organization Donation Requests
             </Typography>
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
-              Contributions made by donors are minted as NFTs on Firefly&apos;s
-              private blockchain network. To initiate a transfer please select
-              'transfer' in order to migrate the ownership to transport on pickup.
+              Please Fill out the form in order to request a specific contribution from
+              donors. Requests are broadcasted to the network. Private details are shared 
+              between entities as necessary upon the confirmation of the donation.
             </Typography>
             <Stack
               sx={{ pt: 4 }}
@@ -154,14 +155,13 @@ export default function Album() {
                  <AddDonation
                      show={modalShow}
                         onHide={() => setModalShow(false)} 
-                        org={'Donor'}
-                        childComponent={<DonorForm/>}/>
+                        org={'NGO'}
+                        childComponent={<NGOForm/>}/>
 
                 <InfoModal show={infoModalShow}
                     onHide={() => setInfoModalShow(false)}/>
 
-              <Button variant="contained" onClick={() => setModalShow(true)}>Add Donation</Button>
-              <Button variant="outlined" onClick={() => setInfoModalShow(true)}>Why NFT Donations?</Button>
+              <Button variant="contained" onClick={() => setModalShow(true)}>Request Donation</Button>
             </Stack>
           </Container>
         </Box>
