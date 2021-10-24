@@ -119,6 +119,7 @@ const Home = () => {
     </div>
 
         <HomeScroll />
+        
          {/* Footer */}
       <Box sx={{ bgcolor: 'background.paper', p: 16 }} component="footer">
         <Typography variant="h6" align="center" gutterBottom>
