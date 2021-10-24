@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import { SocialIcon } from 'react-social-icons';
+import FF from '../images/ffLogo.png'
 
 
 const useStyles = makeStyles(() => ({
@@ -114,8 +115,13 @@ const Home = () => {
         <HomeScroll />
         
          {/* Footer */}
+
       <Box sx={{ bgcolor: 'background.paper', p: 16 }} component="footer">
+          <h4>Powered by</h4>
+      <img src={FF} alt='firefly  logo' style={{justifyContent: 'center', align:'center',
+                alignItems: 'center', width:'20%', height:'20%', display: 'flex'}}/>
         <Typography variant="h6" align="center" gutterBottom>
+            
         <SocialIcon url="https://www.facebook.com/TheGivingChain/" network="facebook" style={{ height: 50, width: 50 }} />
         &nbsp;
         <SocialIcon url="https://www.instagram.com/thegivingchain/" network="instagram" style={{ height: 50, width: 50 }} />
@@ -136,8 +142,9 @@ const Home = () => {
           Blockchain Powering Generosity
         </Typography>
         <Copyright />
+        
       </Box>
-
+      
          </>
     )
 }
