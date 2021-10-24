@@ -60,13 +60,8 @@ function getNFTImageIds(){
 }
 
 
-
-
-
-// const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const cards = getNFTImageIds();
 console.log("cards is: ", cards);
-// document.body.style.backgroundColor = "#008000";
 
 
 const theme = createTheme({

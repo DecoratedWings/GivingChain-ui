@@ -1,13 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-// import ImageCard from './ImageCard';
-// import places from '../static/places';
 import useWindowPosition from './hooks/useWindowPosition.js';
 import HomeCard from './HomeCard';
-import { AppBar, IconButton, Toolbar, Collapse } from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { Link as Scroll } from 'react-scroll';
-import SortIcon from '@material-ui/icons/Sort';
 import princeton from './images/princeton.jpg';
 import ukat from './images/ukat.png';
 import women from './images/women.png';

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import axios from "axios";
@@ -73,11 +72,6 @@ class DriverUpdates extends Component {
         var {isLoaded, items} = this.state;
         if(!isLoaded){
             return <div>Loading ...</div>
-        }
-        function check(item){
-            if(item.value.dx) {
-              return<div>Item: {item.value.dx.peer}</div>
-            }
         }
 
         
