@@ -46,7 +46,7 @@ const dataUrl = 'http://localhost:5000/api/v1/namespaces/images/data';
 const driverTransferUrl = 'http://localhost:5000/api/v1/namespaces/default/tokens/erc1155/pools/donations/transfers';
 
 function getNFTImageIds(){
-    var Ids = new Array();
+    var Ids = [];
     axios.get(dataUrl)
     .then(response=>{
         console.log("response length", response.data.length)
@@ -72,10 +72,8 @@ function transferNFTDriver(index){
     }).catch(error=>console.log(error))
 }
 
-// const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const cards = getNFTImageIds();
 console.log("cards is: ", cards);
-// document.body.style.backgroundColor = "#008000";
 
 
 const theme = createTheme({
@@ -85,7 +83,6 @@ const theme = createTheme({
         }
     }
 });
-const nftUrl = 'http://localhost:5000/api/v1/namespaces/images/data'
 
 
 export default function Album() {

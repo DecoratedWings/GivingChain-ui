@@ -3,38 +3,12 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions, Grid } from '@mui/material';
-import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, IconButton, Toolbar, Collapse } from '@material-ui/core';
+import { CardActionArea, Grid } from '@mui/material';
+import { Collapse } from '@material-ui/core';
 
-
-
-
-const useStyles = makeStyles({
-    root: {
-      maxWidth: 645,
-      background: 'rgba(0,0,0,0.5)',
-      margin: '20px',
-    },
-    media: {
-      height: 440,
-    },
-    title: {
-      fontFamily: 'Nunito',
-      fontWeight: 'bold',
-      fontSize: '2rem',
-      color: '#fff',
-    },
-    desc: {
-      fontFamily: 'Nunito',
-      fontSize: '1.1rem',
-      color: '#ddd',
-    },
-  });
   
 
 export default function HomeCard(props) {
-    const classes = useStyles();
  
     return (
 

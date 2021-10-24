@@ -45,7 +45,6 @@ export default function HomeScroll() {
       description={'This project is based in the tri-state area of the United States. Donations from food drives and surplus produce from Jersey farmers will be distributed to local food banks. The aim is to combat hunger locally for families and individuals in need. This urgency has been amplified due to the effects of the COVID-19 pandemic. The initiative follows the local charity giving model and has been in effect since 2019.'}/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <HomeCard  checked={checked} img={ukat} proj={'Uttarakhand'} description={'Localized to the Uttarakhand area of India, this project’s purpose is to aid local farmers who have been impacted by flooding. For farmers in this region, donations are vital as their sole livelihood has suffered.'}/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <HomeCard  checked={checked} img={women} proj={'Women'} description={'A women’s crisis is a humanitarian crisis. Women in India across many regions are in dire need of sanitary products. Ongoing efforts have been made in the past, but distributed ledger technology increases the assurance of women receiving the help that they need.'}/>
-
     </div>
     </>
   );

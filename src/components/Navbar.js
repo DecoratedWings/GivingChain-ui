@@ -8,7 +8,6 @@ import {
     NavBtn,
     NavBtnLink
 } from './NavbarElements';
-import FF from './images/ffLogo.png'
 
 function Navbar() {
     const [currAccount, setCurrentAccount] = React.useState("");

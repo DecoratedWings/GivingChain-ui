@@ -1,24 +1,17 @@
 import React, {useEffect, useState} from 'react'
 import Highway from '../video/Highway.mp4'
-import HL from '../images/HL.jpg'
-import FF from '../images/ffLogo.png'
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, IconButton, Toolbar, Collapse } from '@material-ui/core';
+import { IconButton, Collapse } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Link as Scroll } from 'react-scroll';
-import SortIcon from '@material-ui/icons/Sort';
 import HomeScroll from '../HomeScroll.js'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
-import axios from 'axios';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { CardActionArea } from '@mui/material';
 import { SocialIcon } from 'react-social-icons';
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     root: {
       display: 'flex',
       justifyContent: 'center',
@@ -145,9 +138,8 @@ const Home = () => {
         <Copyright />
       </Box>
 
-
          </>
     )
 }
 
-export default Home
+export default Home;

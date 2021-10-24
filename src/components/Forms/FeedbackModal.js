@@ -1,7 +1,6 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from '@material-ui/core/Button';
-import Link from '@mui/material/Link';
 import FeedbackForm from './FeedbackForm';
 
 export default function FeedbackModal(props) {

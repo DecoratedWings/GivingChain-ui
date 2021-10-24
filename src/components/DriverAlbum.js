@@ -5,10 +5,8 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -18,9 +16,6 @@ import axios from 'axios';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { CardActionArea } from '@mui/material';
 import { SocialIcon } from 'react-social-icons';
-import DonorForm from './Forms/DonorForm';
-import AddDonation from './Forms/AddDonation';
-import InfoModal from './Forms/InfoModal';
 import NFTModal from './Forms/NFTModal';
 import IconButton from '@mui/material/IconButton';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -44,7 +39,7 @@ function Copyright() {
 
 
 function getNFTImageIdsForTransfer(){
-    var Ids = new Array();
+    var Ids = [];
     axios.get(dataUrl)
     .then(response=>{
         console.log("response length", response.data.length)
@@ -60,7 +55,7 @@ function getNFTImageIdsForTransfer(){
 const dataUrl = 'http://localhost:5001/api/v1/namespaces/default/data';
 
 function getNFTImageIds(){
-    var Ids = new Array();
+    var Ids = [];
     axios.get(dataUrl)
     .then(response=>{
         console.log("response length", response.data.length)
@@ -101,12 +96,11 @@ console.log("cards is: ", cards);
 
 
 const theme = createTheme();
-const nftUrl = 'http://localhost:5001/api/v1/namespaces/images/data'
 
 
 export default function Album() {
-    const [modalShow, setModalShow] = React.useState(false);
-    const [infoModalShow, setInfoModalShow] = React.useState(false);
+    // const [] = React.useState(false);
+    // const [] = React.useState(false);
     const [nftModalShow, setNFTModalShow] = React.useState(false);
 
 

@@ -1,11 +1,9 @@
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
-import CameraIcon from '@mui/icons-material/PhotoCamera';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
@@ -18,10 +16,8 @@ import axios from 'axios';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { CardActionArea } from '@mui/material';
 import { SocialIcon } from 'react-social-icons';
-import DonorForm from './Forms/DonorForm';
 import AddDonation from './Forms/AddDonation';
 import InfoModal from './Forms/InfoModal';
-import NFTModal from './Forms/NFTModal';
 import IconButton from '@mui/material/IconButton';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import Badge from '@mui/material/Badge';
@@ -48,7 +44,7 @@ const dataUrl = 'http://localhost:5000/api/v1/namespaces/ngoRequests/data';
 const driverTransferUrl = 'http://localhost:5000/api/v1/namespaces/default/tokens/erc1155/pools/donations/transfers';
 
 function getNFTImageIds(){
-    var Ids = new Array();
+    var Ids = [];
     axios.get(dataUrl)
     .then(response=>{
         console.log("response length", response.data.length)
@@ -87,7 +83,6 @@ const theme = createTheme({
         }
     }
 });
-const ngoRequests = 'http://localhost:5000/api/v1/namespaces/ngoRequests/data'
 
 
 export default function NGOAlbum() {
