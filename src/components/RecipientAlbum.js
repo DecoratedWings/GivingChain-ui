@@ -18,17 +18,16 @@ import axios from 'axios';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { CardActionArea } from '@mui/material';
 import { SocialIcon } from 'react-social-icons';
-import DonorForm from './Forms/DonorForm';
+import RecipientForm from './Forms/RecipientForm';
 import AddDonation from './Forms/AddDonation';
-import InfoModal from './Forms/InfoModal';
-import NFTModal from './Forms/NFTModal';
+import FeedbackModal from './Forms/FeedbackModal';
+import RecipientModal from './Forms/RecipientModal';
 import IconButton from '@mui/material/IconButton';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import Badge from '@mui/material/Badge';
 import MailIcon from '@mui/icons-material/Mail';
-import BusinessIcon from '@mui/icons-material/Business';
-import NGOForm from './Forms/NGOForm.js';
-import NGORequestsModal from './Forms/NGORequestModal.js'
+import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
+
 
 
 
@@ -44,35 +43,25 @@ function Copyright() {
     </Typography>
   );
 }
-const dataUrl = 'http://localhost:5000/api/v1/namespaces/ngoRequests/data';
-const driverTransferUrl = 'http://localhost:5000/api/v1/namespaces/default/tokens/erc1155/pools/donations/transfers';
+const dataUrl = 'http://localhost:5002/api/v1/namespaces/default/tokens/erc1155/pools/donations/transfers';
 
 function getNFTImageIds(){
     var Ids = new Array();
     axios.get(dataUrl)
     .then(response=>{
         console.log("response length", response.data.length)
-        for(var i=0; i<response.data.length;i++) {
-            Ids.push(response.data[i]);
-            console.log(response[i])
+        for(var i=0; i<response.data.length-1;i++) {
+            Ids.push(response.data[i].localId);
+            console.log("local Id", response.data[i].localId)
         }
         console.log(response)
     }).catch(error=>console.log(error))
     return Ids;
 }
 
-function transferNFTDriver(index){
-    axios.post(driverTransferUrl, {
-        "to": "0x7fa933448ae2b28815007b24f1e0b06adacecdb7",
-        "tokenIndex": `${index}`,
-        "amount": 1
-    }).then(response=> {
-        console.log(response);
-        console.log(`data: ${response.data.type}`)
-        if(response.data.type==='transfer')
-            alert("The NFT was transfered to the driver successfully!");
-    }).catch(error=>console.log(error))
-}
+
+
+
 
 // const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const cards = getNFTImageIds();
@@ -83,14 +72,13 @@ console.log("cards is: ", cards);
 const theme = createTheme({
     palette: {
         primary: {
-            main: '#FDDA0D'
+            main: '#ff3333'
         }
     }
 });
-const ngoRequests = 'http://localhost:5000/api/v1/namespaces/ngoRequests/data'
 
 
-export default function NGOAlbum() {
+export default function RecipientAlbum() {
     const [modalShow, setModalShow] = React.useState(false);
     const [infoModalShow, setInfoModalShow] = React.useState(false);
     const [nftModalShow, setNFTModalShow] = React.useState(false);
@@ -100,15 +88,15 @@ export default function NGOAlbum() {
       <CssBaseline />
       <AppBar position="relative">
         <Toolbar>
-          <BusinessIcon sx={{ mr: 2 }} />
+          <EmojiPeopleIcon sx={{ mr: 2 }} />
           <Typography variant="h6" color="inherit" noWrap>
-            NGO Request Donation
+            Recipient Held NFTs and Recieved Donations
           </Typography>
 
           <Grid item xs/>
 
           <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={2} color="error">
+          <Badge badgeContent={9} color="error">
             <MailIcon />
           </Badge>
         </IconButton>
@@ -117,7 +105,7 @@ export default function NGOAlbum() {
           size="large"
           color="inherit"
         >
-          <Badge badgeContent={1} color="error">
+          <Badge badgeContent={3} color="error">
             <NotificationsIcon />
           </Badge>
         </IconButton>
@@ -140,12 +128,10 @@ export default function NGOAlbum() {
               color="text.primary"
               gutterBottom
             >
-              Organization Donation Requests
+            Recipient NFTs
             </Typography>
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
-              Please Fill out the form in order to request a specific contribution from
-              donors. Requests are broadcasted to the network. Private details are shared 
-              between entities as necessary upon the confirmation of the donation.
+              
             </Typography>
             <Stack
               sx={{ pt: 4 }}
@@ -156,13 +142,14 @@ export default function NGOAlbum() {
                  <AddDonation
                      show={modalShow}
                         onHide={() => setModalShow(false)} 
-                        org={'NGO'}
-                        childComponent={<NGOForm/>}/>
+                        org={'Recipient'}
+                        childComponent={<RecipientForm/>}/>
 
-                <InfoModal show={infoModalShow}
+                <FeedbackModal show={infoModalShow}
                     onHide={() => setInfoModalShow(false)}/>
 
-              <Button variant="contained" onClick={() => setModalShow(true)}>Request Donation</Button>
+              <Button variant="contained" onClick={() => setModalShow(true)}>Send Message</Button>
+              <Button variant="outlined" onClick={() => setInfoModalShow(true)}>Rate Delivery</Button>
             </Stack>
           </Container>
         </Box>
@@ -175,25 +162,24 @@ export default function NGOAlbum() {
                   sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                 >
              <CardActionArea>
-
-             <NGORequestsModal show={nftModalShow}
+                {console.log("CARD ID IS: ", card.id)}
+             <RecipientModal show={nftModalShow}
                  onHide={() => setNFTModalShow(false)}
-                 id={card.id} />
-
-                    {console.log("CARD IS", card.id)}
-                
+                 id={cards[cards.indexOf(card)]} />
+                    {console.log("CARD IS", cards.indexOf(card))}
+             
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Donation Request Number: {cards.length-cards.indexOf(card)}
+                      Donation number: {cards.length-cards.indexOf(card)}
                     </Typography>
                     <Typography>
-                      TxnId: <br/>{card.id}
+                      localId: <br/> {cards[cards.indexOf(card)]}
                     </Typography>
                   </CardContent>
                   </CardActionArea>
                   <CardActions>
                     <Button size="small" onClick={()=>setNFTModalShow(true)}>View</Button>
-                    <Button size="small"onClick={()=>transferNFTDriver(cards.indexOf(card)+1)}>Transfer</Button>
+                    {/* <Button size="small"onClick={()=>transferNFTDriver(cards.indexOf(card)+1)}>Transfer</Button> */}
                   </CardActions>
                 </Card>
               </Grid>

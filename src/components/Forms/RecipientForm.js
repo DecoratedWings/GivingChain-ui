@@ -10,7 +10,7 @@ import axios from "axios";
 
 
 const privateMsgUrl = 'http://localhost:5000/api/v1/namespaces/ngoRequests/messages/private';
-const broadcastUrl = 'http://localhost:5000/api/v1/namespaces/ngoRequests/messages/broadcast';
+const broadcastUrl = 'http://localhost:5002/api/v1/namespaces/ngoRequests/messages/broadcast';
 
 // Schema for yup
 const validationSchema = Yup.object().shape({
@@ -25,7 +25,7 @@ const validationSchema = Yup.object().shape({
   details: Yup.string().required()
 });
 
-const NGOForm = () => {
+const RecipientForm = () => {
 
 
 function broadcastInfo(values){
@@ -85,7 +85,6 @@ function sendPrivateMessage(values, org) {
           setTimeout(() => {
                  
           broadcastInfo(values);
-
         
             resetForm();
             setSubmitting(false);
@@ -169,7 +168,7 @@ function sendPrivateMessage(values, org) {
           </Form.Group>
           <Form.Group controlId="formBlog">
               <br/>
-            <Form.Label>Donation Request :</Form.Label>
+            <Form.Label>Donation Feedback/Comments :</Form.Label>
             <Form.Control
               as="textarea"
               rows={3}
@@ -197,4 +196,4 @@ function sendPrivateMessage(values, org) {
   );
 }
 
-export default NGOForm;
+export default RecipientForm;

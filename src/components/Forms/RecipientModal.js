@@ -4,10 +4,11 @@ import Button from '@material-ui/core/Button';
 import axios from 'axios';
 
 const messageUrl = 'http://localhost:5001/api/v1/namespaces/default/data';
+const transferLookupUrl = 'http://localhost:5002/api/v1/namespaces/default/tokens/erc1155/pools/donations/transfers?localid=';
 
 
 
-export default function NFTModal(props) {
+export default function RecipientModal(props) {
 
     const [info, setInfo] = React.useState(``);
     
@@ -25,6 +26,14 @@ export default function NFTModal(props) {
         return <div><pre>{info}</pre></div>;
     }
 
+    function getSpecificNFTDetails(localId) { 
+        console.log("URL IS ", `${transferLookupUrl}${localId}`)
+        axios.get(`${transferLookupUrl}${localId}`)
+        .then(response=>{
+            console.log("response from specific details", response)
+            return response.data.to;
+        }).catch(error=>console.log(error))
+    }
     
 
     return (
@@ -39,10 +48,12 @@ export default function NFTModal(props) {
             <h2>Donation Details</h2>
           </Modal.Title>
         </Modal.Header>
+        {/* //TODO: this part needs to be fixed + retrieved from db instead */}
         <Modal.Body>
-           Driver Pickup Details: 
-           {/* "Dummy account need to add logic" */}
-           {getDonationPrivateDetails(props.id)}
+           This NFT Currently Belongs to: 
+           "Driver"
+           {getSpecificNFTDetails(props.id)}
+           {/* {getDonationPrivateDetails(props.id)} */}
            {/* {console.log("PROPS VALUE", props.value)} */}
            {info}
         </Modal.Body>

@@ -3,7 +3,6 @@ import Modal from 'react-bootstrap/Modal';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
 
-const messageUrl = 'http://localhost:5001/api/v1/namespaces/default/data';
 
 
 
@@ -15,11 +14,11 @@ export default function NFTModal(props) {
     function getDonationPrivateDetails(id){
         console.log("ID PASSED IN IS", id)
         var info;
-        axios.get(`${messageUrl}/${id}`)
+        axios.get(`http://localhost:5001/api/v1/namespaces/ngoRequests/data/${id}`)
         .then(response=>{
-            console.log("data RESPONSE IS",response)
-            setInfo(JSON.stringify(response.data.value, null, 2))
-            info = JSON.stringify(response.data.value, null, 2)
+            console.log("data RESPONSE IS",response.data.value.Message)
+            setInfo(JSON.stringify(response.data.value.Message, null, 2))
+            info = JSON.stringify(response.data.value.Message, null, 2)
         }).catch(error=>console.log(error))
         console.log("info is: ", info)
         return <div><pre>{info}</pre></div>;
@@ -40,8 +39,8 @@ export default function NFTModal(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-           Driver Pickup Details: 
-           {/* "Dummy account need to add logic" */}
+           {/* This NFT Currently Belongs to: 
+           "Dummy account need to add logic" */}
            {getDonationPrivateDetails(props.id)}
            {/* {console.log("PROPS VALUE", props.value)} */}
            {info}
