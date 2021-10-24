@@ -84,6 +84,11 @@ const theme = createTheme({
     }
 });
 
+//ToDo: create functionality to delete card
+function deleteCard(id){
+    cards.splice(id,1);
+}
+
 
 export default function NGOAlbum() {
     const [modalShow, setModalShow] = React.useState(false);
@@ -188,7 +193,7 @@ export default function NGOAlbum() {
                   </CardActionArea>
                   <CardActions>
                     <Button size="small" onClick={()=>setNFTModalShow(true)}>View</Button>
-                    <Button size="small"onClick={()=>transferNFTDriver(cards.indexOf(card)+1)}>Transfer</Button>
+                    <Button size="small"onClick={()=>deleteCard(cards.indexOf(card))}>Mark Complete</Button>
                   </CardActions>
                 </Card>
               </Grid>
