@@ -116,12 +116,11 @@ const Home = () => {
           </Scroll>
         </div>
       </Collapse>
+    </div>
 
-
-        </div>
         <HomeScroll />
          {/* Footer */}
-      <Box sx={{ bgcolor: 'background.paper', p: 4 }} component="footer">
+      <Box sx={{ bgcolor: 'background.paper', p: 16 }} component="footer">
         <Typography variant="h6" align="center" gutterBottom>
         <SocialIcon url="https://www.facebook.com/TheGivingChain/" network="facebook" style={{ height: 50, width: 50 }} />
         &nbsp;

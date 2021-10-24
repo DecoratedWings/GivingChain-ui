@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import { Button, CardActionArea, CardActions, Grid } from '@mui/material';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, IconButton, Toolbar, Collapse } from '@material-ui/core';
 
@@ -39,12 +39,13 @@ export default function HomeCard(props) {
     return (
 
         <Collapse in={props.checked} {...(props.checked ? { timeout: 1000 } : {})}>
-
-        <Card sx={{ maxWidth: 345 }}>
+          <Grid container spacing={-1}>
+        
+        <Card sx={{ maxWidth: 545 }}>
             <CardActionArea>
                 <CardMedia
                     component="img"
-                    height="140"
+                    height="340"
                     image={null}
                     alt="N/A"
                 />
@@ -61,7 +62,8 @@ export default function HomeCard(props) {
         
 
         </Card>
-        </Collapse>
+        </Grid>
+    </Collapse>
 
     );
 }
