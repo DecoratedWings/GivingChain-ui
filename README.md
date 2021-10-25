@@ -11,17 +11,25 @@ In the project directory, you can run:
 
 ### `npm start`
 
-## Early Code 
+## Proof of Concept Code 
 
-Currently Metamask can be connected to from the browser. 
-Each tab can upload a photo which will generate an ipfs-http call to upload 
-and generate a unique CID which will represent the NFT. This hash is used as part of the url 
-for the local infura node to host. 
+Model 1 
+Donors are able to submit donations which are minted as NFTs and broadcast to the blockchain network. 
+Transporters view the private message details sent upon creation and can respond. Succesful pickup allows for 
+donor to transfer the nft to the driver. The driver transfers the NFT to the Recipient on successful delivery. 
 
-Later a pinning service for instance will be leveraged as a permanent solution.
+Model 2 
+Similar to Model 1, however the NGO makes the request for the donation from the donor. 
+The rest of the flow is the same up until the recipient node, where the recipient indicates to the NGO
+that the transaction was succesful. 
 
-ReactRouter is used to change pages in the NavBar. 
-Styling is also subject to change.
+
+## Screens
+Home- General information about the giving chain
+Donor- Can create and view NFTs of donations and send messages to the transport node. Can transfer NFT to Driver 
+Transport - Can view specific private details of the donation
+Recipient- Can view the status of NFT ownership. When the delivery is successful the NFT will be in the hands of the recipient. 
+NFO- Can request for a donation which is broadcast to the network. The status of the request is viewable from this screen.
 
 ## Screenshots
 
