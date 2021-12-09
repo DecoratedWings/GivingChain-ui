@@ -23,7 +23,7 @@ class DriverUpdates extends Component {
 
     componentDidMount() {
         var images = [];
-        fetch(`${baseUrl}/namespaces/images/data`)
+        fetch(`${baseUrl}/namespaces/default/data`)
         .then(response => response.json())
         // .then(json => console.log(json))
         .then(json => {
@@ -32,7 +32,7 @@ class DriverUpdates extends Component {
                 items: json,
             })
             json.forEach(item=> {
-                fetch(`${baseUrl}/namespaces/images/data/${item.id}/blob`)
+                fetch(`${baseUrl}/namespaces/default/data/${item.id}/blob`)
                 .then(response=> {
                     console.log(response)
                     images.push(response)
@@ -54,7 +54,7 @@ class DriverUpdates extends Component {
         }
 
         function getNFTImages(item){
-                // fetch(`${baseUrl}/namespaces/images/data/${item.id}/blob`)
+                // fetch(`${baseUrl}/namespaces/default/data/${item.id}/blob`)
                 // .then(response => {
 
                 //     var blob;
@@ -67,7 +67,7 @@ class DriverUpdates extends Component {
                 // })
                 // .catch(error=>console.log(error))
                 axios({
-                    url: `${baseUrl}/namespaces/images/data/${item.id}/blob`,
+                    url: `${baseUrl}/namespaces/default/data/${item.id}/blob`,
                     method: 'GET',
                     responseType: 'blob', // important
                   }).then((response) => {

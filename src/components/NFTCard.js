@@ -12,7 +12,7 @@ import Typography from '@material-ui/core/Typography';
 
 const NFTCardV2 = () => {
 
-    const dataUrl = 'http://localhost:5000/api/v1/namespaces/images/data';
+    const dataUrl = 'http://localhost:5000/api/v1/namespaces/default/data';
     
 
     const [data, setData] = React.useState(``);

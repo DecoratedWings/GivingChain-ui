@@ -7,8 +7,8 @@ import axios from "axios";
 
 
 
-// const privateMsgUrl = 'http://localhost:5000/api/v1/namespaces/ngoRequests/messages/private';
-const broadcastUrl = 'http://localhost:5002/api/v1/namespaces/ngoRequests/messages/broadcast';
+// const privateMsgUrl = 'http://localhost:5000/api/v1/namespaces/default/messages/private';
+const broadcastUrl = 'http://localhost:5002/api/v1/namespaces/default/messages/broadcast';
 
 // Schema for yup
 const validationSchema = Yup.object().shape({
