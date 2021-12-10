@@ -24,7 +24,7 @@ class NFTUpdatesCard extends Component {
         //http://localhost:5000/namespaces
 
         // fetch('https://jsonplaceholder.typicode.com/todos/1')
-        fetch(`${baseUrl}/namespaces/images/data/${this.props.id}/blob`)
+        fetch(`${baseUrl}/namespaces/default/data/${this.props.id}/blob`)
         .then(response => {
             console.log(response)
         })

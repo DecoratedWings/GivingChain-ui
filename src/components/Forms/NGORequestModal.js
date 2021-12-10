@@ -14,7 +14,7 @@ export default function NFTModal(props) {
     function getDonationPrivateDetails(id){
         console.log("ID PASSED IN IS", id)
         var info;
-        axios.get(`http://localhost:5001/api/v1/namespaces/ngoRequests/data/${id}`)
+        axios.get(`http://localhost:5001/api/v1/namespaces/default/data/${id}`)
         .then(response=>{
             console.log("data RESPONSE IS",response.data.value.Message)
             setInfo(JSON.stringify(response.data.value.Message, null, 2))
